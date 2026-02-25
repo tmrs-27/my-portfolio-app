@@ -37,34 +37,7 @@
 
 ---
 
-## 3. アセットの存在確認（デバッグ用）
-
-デプロイ後にアセットがコンテナ内にあるか確認するためのエンドポイントを用意しています。
-
-### 手順
-1. Render の Environment に `DEBUG_ASSETS=1` を追加
-2. 再デプロイ
-3. `https://my-rails-portfolio.onrender.com/_assets_check` にアクセス
-
-### 期待されるレスポンス例
-```json
-{
-  "assets_dir_exist": true,
-  "rails_root": "/app",
-  "css_count": 2,
-  "sample_css": ["tailwind-xxxxx.css", "application-xxxxx.css"]
-}
-```
-
-- `assets_dir_exist: false` → ビルド時にアセットが生成されていない
-- `css_count: 0` → CSS が作成されていない
-- `assets_dir_exist: true` かつ `css_count > 0` なのに 404 → 配信ルーティング・ミドルウェアの可能性
-
-**確認後は `DEBUG_ASSETS` を削除して再デプロイしてください。**
-
----
-
-## 4. 想定される原因と対応
+## 3. 想定される原因と対応
 
 | 原因 | 確認方法 | 対処 |
 |------|----------|------|
@@ -77,7 +50,7 @@
 
 ---
 
-## 5. 直接 URL での確認
+## 4. 直接 URL での確認
 
 デプロイ後にブラウザや curl で次の URL にアクセス:
 
@@ -91,7 +64,7 @@ https://my-rails-portfolio.onrender.com/assets/<実際のファイル名>.css
 
 ---
 
-## 6. ローカルでの Docker ビルドテスト
+## 5. ローカルでの Docker ビルドテスト
 
 ```bash
 docker build -t rails-test .
