@@ -87,6 +87,17 @@
   }
 }
 
+@keyframes gradient-xy {
+  0%, 100% {
+    background-size: 400% 400%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
 @keyframes pulse-soft {
   0%, 100% {
     opacity: 1;
@@ -131,6 +142,146 @@
   .animate-pulse-soft {
     animation: pulse-soft 3s ease-in-out infinite;
   }
+  .animate-gradient {
+    animation: gradient-xy 15s ease infinite;
+    background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+  }
+}
+
+/* 2) モダンUI: カードにスポットライト風ホバー */
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background:
+    radial-gradient(
+      420px circle at var(--x, 50%) var(--y, 0%),
+      rgb(59 130 246 / 0.14),
+      transparent 45%
+    );
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 3) モダンUI: CTAボタンにグロー + シャイン */
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgb(37 99 235 / 0.35);
+}
+
+.btn-neon::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgb(255 255 255 / 0), rgb(255 255 255 / 0.55), rgb(255 255 255 / 0));
+  background-size: 200% 100%;
+  animation: shimmer 2.8s linear infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.btn-neon:hover {
+  box-shadow: 0 14px 34px rgb(37 99 235 / 0.5);
+}
+
+/* マウスストーカー（デスクトップ環境のみ有効化） */
+#mouse-stalker {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+#mouse-stalker.is-visible {
+  opacity: 1;
+}
+
+.mouse-stalker-ring,
+.mouse-stalker-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate3d(-100px, -100px, 0);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.mouse-stalker-ring {
+  width: 34px;
+  height: 34px;
+  margin-left: -17px;
+  margin-top: -17px;
+  border: 1.5px solid rgb(59 130 246 / 0.7);
+  background: radial-gradient(circle, rgb(59 130 246 / 0.08) 0%, transparent 70%);
+  box-shadow: 0 0 22px rgb(59 130 246 / 0.25);
+  transition: width 180ms ease, height 180ms ease, margin 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  will-change: transform;
+}
+
+.mouse-stalker-dot {
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background: rgb(37 99 235 / 0.95);
+  box-shadow: 0 0 14px rgb(59 130 246 / 0.45);
+  will-change: transform;
+}
+
+#mouse-stalker.is-hover .mouse-stalker-ring {
+  width: 52px;
+  height: 52px;
+  margin-left: -26px;
+  margin-top: -26px;
+  border-color: rgb(14 165 233 / 0.95);
+  box-shadow: 0 0 28px rgb(14 165 233 / 0.4);
+}
+
+#mouse-stalker.is-hover .mouse-stalker-dot {
+  transform: scale(0.9);
+}
+
+body.mouse-stalker-enabled {
+  cursor: none;
+}
+
+body.mouse-stalker-enabled input,
+body.mouse-stalker-enabled textarea,
+body.mouse-stalker-enabled [contenteditable="true"] {
+  cursor: text;
+}
+
+.dark .mouse-stalker-ring {
+  border-color: rgb(125 211 252 / 0.72);
+  background: radial-gradient(circle, rgb(56 189 248 / 0.14) 0%, transparent 70%);
+  box-shadow: 0 0 26px rgb(56 189 248 / 0.34);
+}
+
+.dark .mouse-stalker-dot {
+  background: rgb(186 230 253 / 0.95);
+  box-shadow: 0 0 16px rgb(56 189 248 / 0.5);
 }
 
 /* コンテナ内の絶対パスで指定 */
