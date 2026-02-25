@@ -3,13 +3,12 @@
   <head>
     <script>
       (function() {
-        const darkModeKey = "theme";
-        const savedTheme = localStorage.getItem(darkModeKey);
-        const html = document.documentElement;
-        if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-          html.classList.add("dark");
+        const savedTheme = localStorage.getItem("theme");
+        const isDark = savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (isDark) {
+          document.documentElement.classList.add("dark");
         } else {
-          html.classList.remove("dark");
+          document.documentElement.classList.remove("dark");
         }
       })();
     </script>
