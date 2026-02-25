@@ -1,10 +1,11 @@
 FROM ruby:3.3
 
-# PostgreSQLを使うためのパッケージを追加
+# gitを追加（PropshaftやTailwindのビルドに必要になる場合があります）
 RUN apt-get update -qq && apt-get install -y \
   build-essential \
   libpq-dev \
-  nodejs
+  nodejs \
+  git
 
 WORKDIR /app
 
@@ -13,5 +14,7 @@ RUN bundle install
 
 COPY . .
 
-# 起動時にデータベースの準備をしてから、Railsを起動する設定に変更
-CMD ["sh", "-c", "bundle exec rails assets:precompile && bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0 -p 10000"]
+# ビルド時にアセットを固めておく（RAILS_ENVを指定）
+RUN RAILS_ENV=production bundle exec rails assets:precompile
+
+CMD ["sh", "-c", "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0 -p 10000"]
