@@ -10,15 +10,23 @@
         } else {
           document.documentElement.classList.remove("dark");
         }
+        window.toggleTheme = function() {
+          var html = document.documentElement;
+          if (html.classList.contains("dark")) {
+            html.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+          } else {
+            html.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+          }
+        };
       })();
     </script>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <title>RailsDocker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -31,6 +39,11 @@
           <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white transition duration-300 group-hover:rotate-6 group-hover:shadow-lg">M</div>
           <span class="font-bold text-xl tracking-tight group-hover:text-blue-600 transition-colors">MyPortfolio</span>
         <% end %>
+        <div class="flex items-center gap-3">
+          <button type="button" id="theme-toggle" aria-label="テーマ切り替え" onclick="window.toggleTheme&&window.toggleTheme()" class="flex items-center justify-center w-11 h-11 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 active:scale-90 cursor-pointer transition-all duration-150 select-none touch-manipulation">
+            <span class="theme-icon-light hidden dark:block text-lg">🌙</span>
+            <span class="theme-icon-dark block dark:hidden text-lg">☀️</span>
+          </button>
         <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-500 dark:text-gray-400">
           <%= link_to "Home", posts_path, class: "relative hover:text-blue-600 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-200 hover:after:w-full after:content-['']" %>
           <div class="relative group">
@@ -39,12 +52,6 @@
             </span>
             <div class="absolute left-0 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 py-2 min-w-[220px]">
-                <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
-                  <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">テーマ</span>
-                  <button type="button" id="theme-toggle" class="mt-2 w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                    ライト / ダーク を切り替え
-                  </button>
-                </div>
                 <%= link_to categories_path, class: "block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 transition-colors" do %>
                   カテゴリを編集
                 <% end %>
@@ -54,6 +61,7 @@
           <%= link_to "About", "/about", class: "relative hover:text-blue-600 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-200 hover:after:w-full after:content-['']" %>
           <a href="https://github.com/your-name" class="hover:text-blue-600 transition-colors duration-200" target="_blank">GitHub</a>
         </nav>
+        </div>
       </div>
     </header>
 

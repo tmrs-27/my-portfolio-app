@@ -133,7 +133,7 @@
   }
 }
 
-/* プロジェクトルートからの相対パスで指定（本番環境のパス不一致を解消） */
-@source "../../views/**/*.erb";
-@source "../../helpers/**/*.rb";
-@source "../../javascript/**/*.js";
+/* コンテナ内の絶対パスで指定 */
+@source "/app/app/views/**/*.erb";
+@source "/app/app/helpers/**/*.rb";
+@source "/app/app/javascript/**/*.js";
