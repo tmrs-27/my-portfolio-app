@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ruby Gem Favicon">
+  <defs>
+    <linearGradient id="rubyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b86"/>
+      <stop offset="55%" stop-color="#e11d48"/>
+      <stop offset="100%" stop-color="#9f1239"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <path d="M32 8 49 22 42 47 22 47 15 22Z" fill="url(#rubyGradient)"/>
+  <path d="M32 8 39 22 32 30 25 22Z" fill="#fecdd3" fill-opacity="0.45"/>
+  <path d="M15 22h34M25 22l7 25M39 22l-7 25" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.5" fill="none"/>
+</svg>
