@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script>
-      (function() {
-        const savedTheme = localStorage.getItem("theme");
-        const isDark = savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
-        if (isDark) {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-        window.toggleTheme = function() {
-          var html = document.documentElement;
-          if (html.classList.contains("dark")) {
-            html.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-          } else {
-            html.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-          }
-        };
-      })();
-    </script>
     <title>RailsDocker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -40,7 +19,7 @@
           <span class="font-bold text-xl tracking-tight group-hover:text-blue-600 transition-colors">MyPortfolio</span>
         <% end %>
         <div class="flex items-center gap-3">
-          <button type="button" id="theme-toggle" aria-label="テーマ切り替え" onclick="window.toggleTheme&&window.toggleTheme()" class="flex items-center justify-center w-11 h-11 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 active:scale-90 cursor-pointer transition-all duration-150 select-none touch-manipulation">
+          <button type="button" id="theme-toggle" aria-label="テーマ切り替え" class="flex items-center justify-center w-11 h-11 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 active:scale-90 cursor-pointer transition-all duration-150 select-none touch-manipulation">
             <span class="theme-icon-light hidden dark:block text-lg">🌙</span>
             <span class="theme-icon-dark block dark:hidden text-lg">☀️</span>
           </button>

@@ -1,26 +1,49 @@
-document.addEventListener("turbo:load", () => {
-  const html = document.documentElement;
-  const darkModeKey = "theme"; // 保存用の名前
+const THEME_KEY = "theme";
 
-  // 1. 保存された設定を最優先。なければOSの設定を見る
-  const savedTheme = localStorage.getItem(darkModeKey);
-  if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-    html.classList.add("dark");
-  } else {
-    html.classList.remove("dark");
+function readSavedTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY);
+  } catch (_error) {
+    return null;
   }
+}
 
-  // 2. ボタンクリック時の処理（手動切り替えを最優先・即保存）
+function saveTheme(theme) {
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch (_error) {
+    // localStorage が使えない環境でも見た目の切替だけは継続する
+  }
+}
+
+function applyThemeClass(theme) {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+}
+
+function resolveInitialTheme() {
+  const savedTheme = readSavedTheme();
+  if (savedTheme === "dark" || savedTheme === "light") return savedTheme;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function toggleTheme() {
+  const nextTheme = document.documentElement.classList.contains("dark") ? "light" : "dark";
+  applyThemeClass(nextTheme);
+  saveTheme(nextTheme);
+}
+
+function bindThemeToggle() {
   const toggleBtn = document.getElementById("theme-toggle");
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      if (html.classList.contains("dark")) {
-        html.classList.remove("dark");
-        localStorage.setItem(darkModeKey, "light");
-      } else {
-        html.classList.add("dark");
-        localStorage.setItem(darkModeKey, "dark");
-      }
-    });
-  }
-});
+  if (!toggleBtn || toggleBtn.dataset.themeBound === "true") return;
+
+  toggleBtn.dataset.themeBound = "true";
+  toggleBtn.addEventListener("click", toggleTheme);
+}
+
+function initializeTheme() {
+  applyThemeClass(resolveInitialTheme());
+  bindThemeToggle();
+}
+
+initializeTheme();
+document.addEventListener("turbo:load", initializeTheme);
