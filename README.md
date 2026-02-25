@@ -6,6 +6,7 @@ Rails 8 + Tailwind CSS で作成した、シンプルなブログ型ポートフ
 ## URL
 
 - 本番環境: `https://my-rails-portfolio.onrender.com/`
+- GitHub: `https://github.com/tmrs-27/my-portfolio-app`
 
 ## このアプリでできること
 
