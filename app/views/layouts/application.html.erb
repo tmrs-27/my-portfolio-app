@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      (function() {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <title>RailsDocker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="m-0 p-0 bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100 flex flex-col">
+    <%# ヘッダー %>
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border-b border-gray-100 dark:border-gray-800">
+      <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+        <%= link_to root_path, class: "group flex items-center gap-2 transition duration-300 hover:scale-[1.02] active:scale-[0.98]" do %>
+          <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white transition duration-300 group-hover:rotate-6 group-hover:shadow-lg">M</div>
+          <span class="font-bold text-xl tracking-tight group-hover:text-blue-600 transition-colors">MyPortfolio</span>
+        <% end %>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <%= link_to "Home", posts_path, class: "relative hover:text-blue-600 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-200 hover:after:w-full after:content-['']" %>
+          <div class="relative group">
+            <span class="relative inline-block hover:text-blue-600 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-200 group-hover:after:w-full after:content-[''] cursor-pointer py-4 -my-4">
+              設定
+            </span>
+            <div class="absolute left-0 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 py-2 min-w-[220px]" data-controller="theme">
+                <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+                  <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">テーマ</span>
+                  <div class="flex gap-4 mt-2">
+                    <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600">
+                      <input type="radio" name="theme" value="light" data-action="change->theme#switch" class="w-4 h-4 text-blue-600">
+                      <span>ライト</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600">
+                      <input type="radio" name="theme" value="dark" data-action="change->theme#switch" class="w-4 h-4 text-blue-600">
+                      <span>ダーク</span>
+                    </label>
+                  </div>
+                </div>
+                <%= link_to categories_path, class: "block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 transition-colors" do %>
+                  カテゴリを編集
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= link_to "About", "/about", class: "relative hover:text-blue-600 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-blue-600 after:transition-all after:duration-200 hover:after:w-full after:content-['']" %>
+          <a href="https://github.com/your-name" class="hover:text-blue-600 transition-colors duration-200" target="_blank">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
+    <%# フッター %>
+    <footer class="border-t border-gray-100 dark:border-gray-800 py-8 bg-gray-50 dark:bg-gray-900/50">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-sm text-gray-500">&copy; 2026 My Rails Portfolio. Built with Rails 7 & Tailwind CSS.</p>
+      </div>
+    </footer>
+  </body>
+</html>

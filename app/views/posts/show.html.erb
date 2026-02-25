@@ -1,0 +1,37 @@
+<div class="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-500">
+  <div class="container mx-auto py-12 px-4 max-w-3xl">
+    
+    <%# ナビゲーション（戻るボタンなど） %>
+    <div class="mb-8 flex items-center justify-between animate-fade-up">
+      <%= link_to posts_path, class: "inline-flex items-center gap-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium transition-all duration-200 hover:-translate-x-1" do %>
+        ← 一覧に戻る
+      <% end %>
+      <div class="flex gap-4">
+        <%= link_to "編集する", edit_post_path(@post), class: "text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-2 px-4 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-105 active:scale-95 transition-all duration-200" %>
+        <%= button_to "削除", @post, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } }, class: "text-sm bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 py-2 px-4 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/40 hover:scale-105 active:scale-95 transition-all duration-200" %>
+      </div>
+    </div>
+
+    <%# 投稿内容のメインカード %>
+    <article class="bg-white dark:bg-gray-800 p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 animate-scale-in">
+      <%# タイトル %>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+        <%= @post.title %>
+      </h1>
+
+      <%# 投稿日時などのメタ情報（もしあれば） %>
+      <div class="flex flex-wrap items-center gap-3 text-sm text-gray-400 dark:text-gray-500 mb-10 pb-6 border-b border-gray-100 dark:border-gray-700">
+        <span>投稿日: <%= @post.created_at.strftime("%Y年%m月%d日") %></span>
+        <% @post.categories.each do |category| %>
+          <%= link_to category.name, category, class: "inline-block px-3 py-0.5 rounded-full font-medium #{category.badge_classes} transition-all duration-200 hover:scale-105 hover:shadow-md" %>
+        <% end %>
+      </div>
+
+      <%# 本文 %>
+      <div class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+        <%= @post.body %>
+      </div>
+    </article>
+
+  </div>
+</div>

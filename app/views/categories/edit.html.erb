@@ -1,0 +1,48 @@
+<div class="min-h-screen transition-colors duration-500 bg-white dark:bg-gray-900">
+  <div class="container mx-auto py-10 px-4 max-w-xl">
+    <div class="mb-8">
+      <%= link_to "← カテゴリ一覧に戻る", categories_path, class: "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 font-medium" %>
+    </div>
+
+    <h1 class="text-3xl font-extrabold text-gray-700 dark:text-gray-300 mb-6">カテゴリを編集</h1>
+
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+      <%= form_with(model: @category) do |form| %>
+        <% if @category.errors.any? %>
+          <div id="error_explanation" class="bg-red-50 dark:bg-red-900/20 text-red-500 px-3 py-2 font-medium rounded-lg mb-4">
+            <h2><%= @category.errors.count %>件のエラーがあります:</h2>
+            <ul class="mt-2">
+              <% @category.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-6">
+          <%= form.label :name, "カテゴリ名", class: "block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2" %>
+          <%= form.text_field :name, class: "block w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-600 focus:border-transparent p-2.5 transition duration-200", placeholder: "例: 技術メモ" %>
+        </div>
+
+        <div class="mb-6">
+          <%= form.label :color, "色", class: "block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2" %>
+          <div class="flex flex-wrap gap-2">
+            <% Category::COLORS.each do |color| %>
+              <label class="cursor-pointer flex-1 min-w-[80px]">
+                <%= form.radio_button :color, color, class: "peer sr-only" %>
+                <span class="block px-3 py-2 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-center text-sm transition peer-checked:ring-2 peer-checked:ring-blue-600 peer-checked:border-blue-600 dark:peer-checked:border-blue-500">
+                  <span class="inline-block w-4 h-4 rounded-full mb-1 <%= Category::BADGE_CLASSES[color].split(/\s+/).first %>"></span>
+                  <span class="block"><%= Category::COLOR_LABELS[color] %></span>
+                </span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
+        <div>
+          <%= form.submit "更新する", class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-bold cursor-pointer hover:bg-blue-700 shadow-md transition duration-200" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

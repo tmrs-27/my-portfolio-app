@@ -1,0 +1,43 @@
+<%= form_with(model: post, class: "contents") do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="space-y-6">
+    <div>
+      <%= form.label :category_ids, "カテゴリ", class: "block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2" %>
+      <div class="flex flex-wrap gap-3">
+        <%= form.collection_check_boxes :category_ids, @categories || Category.order(:name), :id, :name do |b| %>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <%= b.check_box class: "rounded border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-600" %>
+            <span class="inline-block px-3 py-1 rounded-full text-sm font-medium <%= b.object.badge_classes %>">
+              <%= b.text %>
+            </span>
+          </label>
+        <% end %>
+      </div>
+      <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">複数選択できます</p>
+    </div>
+
+    <div>
+      <%= form.label :title, "タイトル", class: "block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2" %>
+      <%= form.text_field :title, class: "block w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-600 focus:border-transparent p-2.5 transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :body, "本文", class: "block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2" %>
+      <%= form.text_area :body, rows: 10, class: "block w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-600 focus:border-transparent p-2.5 transition duration-200" %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit "投稿を保存する", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-bold cursor-pointer hover:bg-blue-700 shadow-md transition duration-200" %>
+    </div>
+  </div>
+<% end %>

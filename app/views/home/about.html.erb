@@ -1,0 +1,59 @@
+<div class="min-h-screen bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 py-12 md:py-20 max-w-3xl">
+    <article>
+      <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-8">About</h1>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">制作で意識したこと</h2>
+        <ul class="space-y-3 text-gray-600 dark:text-gray-400 list-disc pl-6">
+          <li><strong class="text-gray-900 dark:text-white">シンプルさ</strong> — 余計な要素を削ぎ落とし、コンテンツが主役となるデザインを心がけました。</li>
+          <li><strong class="text-gray-900 dark:text-white">一貫性</strong> — 配色・余白・タイポグラフィを統一し、全体のトーンを揃えています。</li>
+          <li><strong class="text-gray-900 dark:text-white">使いやすさ</strong> — 直感的なナビゲーション、わかりやすいラベル、適切なフィードバックを意識しました。</li>
+          <li><strong class="text-gray-900 dark:text-white">レスポンシブ対応</strong> — スマートフォンからデスクトップまで、さまざまな画面サイズで快適に使えるようにしています。</li>
+          <li><strong class="text-gray-900 dark:text-white">アクセシビリティ</strong> — 十分なコントラスト、適切なフォントサイズ、キーボード操作を考慮しています。</li>
+          <li><strong class="text-gray-900 dark:text-white">ダークモード</strong> — 目に優しいダークテーマを用意し、設定で切り替え可能にしました。</li>
+        </ul>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">使用技術</h2>
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-6">
+          <dl class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">バックエンド</dt>
+              <dd class="mt-1 text-gray-900 dark:text-white">Ruby on Rails 8.1</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">フロントエンド</dt>
+              <dd class="mt-1 text-gray-900 dark:text-white">Tailwind CSS 4, Hotwire (Turbo, Stimulus)</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">データベース</dt>
+              <dd class="mt-1 text-gray-900 dark:text-white">SQLite</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">インフラ</dt>
+              <dd class="mt-1 text-gray-900 dark:text-white">Docker, Kamal（デプロイ用）</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">主な機能</h2>
+        <ul class="space-y-2 text-gray-600 dark:text-gray-400 list-disc pl-6">
+          <li>投稿の CRUD（作成・閲覧・編集・削除）</li>
+          <li>カテゴリ（複数選択可能、色分け表示）</li>
+          <li>タイトル・本文の検索</li>
+          <li>カテゴリによる絞り込み</li>
+          <li>ライト／ダークモード切り替え</li>
+          <li>レスポンシブデザイン</li>
+        </ul>
+      </section>
+
+      <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <%= link_to "← トップに戻る", root_path, class: "text-blue-600 dark:text-blue-400 font-medium hover:underline" %>
+      </div>
+    </article>
+  </div>
+</div>
