@@ -1,46 +1,68 @@
-<div class="min-h-screen transition-colors duration-500 bg-white dark:bg-gray-900">
-  <div class="container mx-auto py-10 px-4">
-    <div class="flex flex-col gap-4 mb-8 animate-fade-up">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h1 class="text-4xl font-extrabold text-gray-700 dark:text-gray-300">投稿一覧</h1>
-        <%= link_to "新規投稿", new_post_path, class: "bg-blue-600 hover:bg-blue-700 hover:scale-105 active:scale-95 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all duration-200 w-fit" %>
-      </div>
-
-      <%= form_with url: posts_path, method: :get, local: true, class: "flex flex-col sm:flex-row gap-3" do |f| %>
-        <div class="flex-1 relative">
-          <input type="search" name="q" value="<%= @search_query %>" placeholder="タイトル・本文で検索..." class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-600 focus:border-transparent pl-4 pr-10 py-2.5 text-sm transition duration-200" />
-          <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none">🔍</span>
+<div class="min-h-screen bg-gradient-to-b from-blue-50/70 via-white to-slate-50/70 transition-colors duration-500 dark:from-gray-900 dark:via-gray-900 dark:to-slate-900">
+  <section class="relative overflow-hidden border-b border-blue-100/70 dark:border-gray-800">
+    <div class="absolute inset-0 animate-gradient opacity-15 dark:opacity-10"></div>
+    <div class="absolute left-[10%] top-0 h-48 w-48 -translate-y-1/3 rounded-full bg-blue-300/30 blur-3xl dark:bg-blue-500/10"></div>
+    <div class="container relative z-10 mx-auto px-4 py-12 md:py-16">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div class="animate-fade-up">
+          <p class="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/80 px-3 py-1 text-xs font-semibold tracking-wide text-blue-700 shadow-sm backdrop-blur dark:border-blue-700/40 dark:bg-gray-900/80 dark:text-blue-300">
+            <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+            POSTS
+          </p>
+          <h1 class="mt-4 text-4xl font-black tracking-tight text-gray-900 dark:text-white md:text-5xl">投稿一覧</h1>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            いままでに公開した投稿は <span class="font-semibold text-blue-600 dark:text-blue-400"><%= @posts.size %>件</span> です。
+          </p>
         </div>
-        <div class="flex items-center gap-2">
-          <label for="category_id" class="text-sm font-medium text-gray-600 dark:text-gray-400 whitespace-nowrap">カテゴリ:</label>
-          <select name="category_id" id="category_id" class="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-600 focus:border-transparent px-3 py-2.5 text-sm transition duration-200">
+        <%= link_to "新規投稿", new_post_path, class: "animate-fade-up inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/30" %>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-4 py-8 md:py-10">
+    <div class="animate-fade-up rounded-2xl border border-gray-200/80 bg-white/80 p-4 shadow-sm backdrop-blur dark:border-gray-700 dark:bg-gray-800/70 md:p-5">
+      <%= form_with url: posts_path, method: :get, local: true, class: "flex flex-col gap-3 lg:flex-row lg:items-center" do %>
+        <div class="relative flex-1">
+          <input type="search" name="q" value="<%= @search_query %>" placeholder="タイトル・本文で検索..." class="w-full rounded-xl border border-gray-300/90 bg-white px-4 py-2.5 pr-10 text-sm text-gray-900 transition focus:border-transparent focus:ring-2 focus:ring-blue-600 dark:border-gray-600 dark:bg-gray-800 dark:text-white" />
+          <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">🔍</span>
+        </div>
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label for="category_id" class="text-sm font-medium text-gray-600 dark:text-gray-300 whitespace-nowrap">カテゴリ</label>
+          <select name="category_id" id="category_id" class="rounded-xl border border-gray-300/90 bg-white px-3 py-2.5 text-sm text-gray-900 transition focus:border-transparent focus:ring-2 focus:ring-blue-600 dark:border-gray-600 dark:bg-gray-800 dark:text-white">
             <option value="" <%= @selected_category_id.blank? ? "selected" : "" %>>すべて</option>
             <% @categories.each do |category| %>
               <option value="<%= category.id %>" <%= @selected_category_id.to_s == category.id.to_s ? "selected" : "" %>><%= category.name %></option>
             <% end %>
           </select>
-          <button type="submit" class="rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2.5 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-            検索
+          <button type="submit" class="rounded-xl bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-700 dark:bg-blue-600 dark:hover:bg-blue-700">
+            絞り込む
           </button>
         </div>
       <% end %>
     </div>
 
-    <div id="posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <% @posts.each_with_index do |post, index| %>
-        <div class="group bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 hover:border-blue-200 dark:hover:border-blue-800/50 transition-all duration-300 animate-fade-up" style="animation-delay: <%= (index * 0.08).to_s %>s">
-          <div class="text-gray-600 dark:text-gray-400">
-            <%= render post %>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-gray-50 dark:border-gray-700">
-            <%= link_to post, class: "inline-flex items-center gap-1 text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors group-hover:gap-2 duration-200" do %>
-              詳細を見る
-              <span class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <% if @posts.any? %>
+      <div id="posts" class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <% @posts.each_with_index do |post, index| %>
+          <article class="spotlight-card group animate-fade-up overflow-hidden rounded-2xl border border-gray-200/80 bg-white/90 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800/85 dark:hover:border-blue-800/60" style="animation-delay: <%= (index * 0.05).round(2) %>s">
+            <div class="h-1 w-full rounded-full bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-500 opacity-70"></div>
+            <div class="mt-4 text-gray-600 dark:text-gray-300">
+              <%= render post %>
+            </div>
+            <div class="mt-5 border-t border-gray-100 pt-4 dark:border-gray-700">
+              <%= link_to post, class: "inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 transition-all duration-200 hover:text-blue-700 group-hover:gap-2 dark:text-blue-400 dark:hover:text-blue-300" do %>
+                詳細を見る
+                <span class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="mt-8 rounded-2xl border border-dashed border-gray-300 bg-white/70 px-6 py-14 text-center shadow-sm dark:border-gray-600 dark:bg-gray-800/60">
+        <p class="text-gray-500 dark:text-gray-300">条件に一致する投稿が見つかりませんでした。</p>
+        <%= link_to "投稿一覧をリセット", posts_path, class: "mt-4 inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700" %>
+      </div>
+    <% end %>
   </div>
 </div>
