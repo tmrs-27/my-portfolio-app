@@ -1,58 +1,90 @@
-<div class="min-h-screen bg-white dark:bg-gray-900">
-  <div class="container mx-auto px-4 py-12 md:py-20 max-w-3xl">
-    <article>
-      <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-8">About</h1>
+<div class="min-h-screen bg-gradient-to-b from-blue-50/70 via-white to-slate-50/70 dark:from-gray-900 dark:via-gray-900 dark:to-slate-900">
+  <section class="relative overflow-hidden border-b border-blue-100/70 dark:border-gray-800">
+    <div class="absolute inset-0 animate-gradient opacity-20 dark:opacity-10"></div>
+    <div class="absolute right-0 top-0 h-56 w-56 translate-x-1/3 -translate-y-1/4 rounded-full bg-blue-300/30 blur-3xl dark:bg-blue-500/10"></div>
+    <div class="container relative z-10 mx-auto max-w-5xl px-4 py-14 md:py-20">
+      <div class="animate-fade-up">
+        <p class="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/80 px-3 py-1 text-xs font-semibold tracking-wide text-blue-700 shadow-sm backdrop-blur dark:border-blue-700/40 dark:bg-gray-900/80 dark:text-blue-300">
+          <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+          ABOUT THIS APP
+        </p>
+        <h1 class="mt-4 text-4xl font-black tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+          シンプルで、<span class="bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-500 bg-clip-text text-transparent">心地よい</span>ブログ体験を
+        </h1>
+        <p class="mt-6 max-w-3xl text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+          Rails と Tailwind CSS で作ったポートフォリオ兼ブログアプリです。読みやすさと操作の気持ちよさを大切に、
+          余白・配色・動きのバランスを丁寧に設計しています。
+        </p>
+      </div>
+    </div>
+  </section>
 
-      <section class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">制作で意識したこと</h2>
-        <ul class="space-y-3 text-gray-600 dark:text-gray-400 list-disc pl-6">
-          <li><strong class="text-gray-900 dark:text-white">シンプルさ</strong> — 余計な要素を削ぎ落とし、コンテンツが主役となるデザインを心がけました。</li>
-          <li><strong class="text-gray-900 dark:text-white">一貫性</strong> — 配色・余白・タイポグラフィを統一し、全体のトーンを揃えています。</li>
-          <li><strong class="text-gray-900 dark:text-white">使いやすさ</strong> — 直感的なナビゲーション、わかりやすいラベル、適切なフィードバックを意識しました。</li>
-          <li><strong class="text-gray-900 dark:text-white">レスポンシブ対応</strong> — スマートフォンからデスクトップまで、さまざまな画面サイズで快適に使えるようにしています。</li>
-          <li><strong class="text-gray-900 dark:text-white">アクセシビリティ</strong> — 十分なコントラスト、適切なフォントサイズ、キーボード操作を考慮しています。</li>
-          <li><strong class="text-gray-900 dark:text-white">ダークモード</strong> — 目に優しいダークテーマを用意し、設定で切り替え可能にしました。（本番環境調整中）</li>
-        </ul>
+  <div class="container mx-auto max-w-5xl px-4 py-10 md:py-14">
+    <article class="space-y-8">
+      <section class="animate-fade-up rounded-2xl border border-gray-200/80 bg-white/85 p-6 shadow-sm backdrop-blur dark:border-gray-700 dark:bg-gray-800/65 md:p-8">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">制作で意識したこと</h2>
+        <div class="mt-5 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-blue-100 bg-blue-50/70 p-4 dark:border-blue-900/60 dark:bg-blue-900/20">
+            <p class="font-semibold text-blue-700 dark:text-blue-300">シンプルさ</p>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">余計な要素を削ぎ落とし、コンテンツが主役になる構成を目指しました。</p>
+          </div>
+          <div class="rounded-xl border border-sky-100 bg-sky-50/70 p-4 dark:border-sky-900/60 dark:bg-sky-900/20">
+            <p class="font-semibold text-sky-700 dark:text-sky-300">一貫性</p>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">配色・余白・タイポグラフィを統一し、迷わないUIトーンを維持しています。</p>
+          </div>
+          <div class="rounded-xl border border-indigo-100 bg-indigo-50/70 p-4 dark:border-indigo-900/60 dark:bg-indigo-900/20">
+            <p class="font-semibold text-indigo-700 dark:text-indigo-300">使いやすさ</p>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">直感的な導線とわかりやすいラベルで、ストレスのない操作を意識しました。</p>
+          </div>
+          <div class="rounded-xl border border-violet-100 bg-violet-50/70 p-4 dark:border-violet-900/60 dark:bg-violet-900/20">
+            <p class="font-semibold text-violet-700 dark:text-violet-300">アクセシビリティ</p>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">コントラストやフォントサイズ、キーボード操作にも配慮しています。</p>
+          </div>
+        </div>
+        <p class="mt-5 rounded-lg border border-amber-200/80 bg-amber-50 px-4 py-3 text-sm text-amber-700 dark:border-amber-900/60 dark:bg-amber-900/20 dark:text-amber-300">
+          ダークモード — 目に優しいダークテーマを用意し、設定で切り替え可能にしました。（本番環境調整中）
+        </p>
       </section>
 
-      <section class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">使用技術</h2>
-        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-6">
-          <dl class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">バックエンド</dt>
-              <dd class="mt-1 text-gray-900 dark:text-white">Ruby on Rails 8.1</dd>
-            </div>
-            <div>
-              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">フロントエンド</dt>
-              <dd class="mt-1 text-gray-900 dark:text-white">Tailwind CSS 4, Hotwire (Turbo, Stimulus)</dd>
-            </div>
-            <div>
-              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">データベース</dt>
-              <dd class="mt-1 text-gray-900 dark:text-white">SQLite</dd>
-            </div>
-            <div>
-              <dt class="text-sm font-semibold text-gray-500 dark:text-gray-400">インフラ</dt>
-              <dd class="mt-1 text-gray-900 dark:text-white">Docker, Kamal（デプロイ用）</dd>
-            </div>
-          </dl>
+      <section class="animate-fade-up rounded-2xl border border-gray-200/80 bg-white/85 p-6 shadow-sm backdrop-blur dark:border-gray-700 dark:bg-gray-800/65 md:p-8" style="animation-delay: 0.08s">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">使用技術</h2>
+        <div class="mt-5 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Backend</p>
+            <p class="mt-2 text-gray-900 dark:text-white">Ruby on Rails 8.1</p>
+          </div>
+          <div class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Frontend</p>
+            <p class="mt-2 text-gray-900 dark:text-white">Tailwind CSS 4, Hotwire (Turbo, Stimulus)</p>
+          </div>
+          <div class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Database</p>
+            <p class="mt-2 text-gray-900 dark:text-white">SQLite / PostgreSQL (Production)</p>
+          </div>
+          <div class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Infra</p>
+            <p class="mt-2 text-gray-900 dark:text-white">Docker, Render</p>
+          </div>
         </div>
       </section>
 
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">主な機能</h2>
-        <ul class="space-y-2 text-gray-600 dark:text-gray-400 list-disc pl-6">
-          <li>投稿の CRUD（作成・閲覧・編集・削除）</li>
-          <li>カテゴリ（複数選択可能、色分け表示）</li>
-          <li>タイトル・本文の検索</li>
-          <li>カテゴリによる絞り込み</li>
-          <li>ライト／ダークモード切り替え</li>
-          <li>レスポンシブデザイン</li>
-        </ul>
+      <section class="animate-fade-up rounded-2xl border border-gray-200/80 bg-white/85 p-6 shadow-sm backdrop-blur dark:border-gray-700 dark:bg-gray-800/65 md:p-8" style="animation-delay: 0.16s">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">主な機能</h2>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">投稿CRUD</span>
+          <span class="rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">カテゴリ管理</span>
+          <span class="rounded-full bg-violet-100 px-3 py-1 text-sm font-medium text-violet-700 dark:bg-violet-900/40 dark:text-violet-300">キーワード検索</span>
+          <span class="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">カテゴリ絞り込み</span>
+          <span class="rounded-full bg-sky-100 px-3 py-1 text-sm font-medium text-sky-700 dark:bg-sky-900/40 dark:text-sky-300">ダークモード</span>
+          <span class="rounded-full bg-pink-100 px-3 py-1 text-sm font-medium text-pink-700 dark:bg-pink-900/40 dark:text-pink-300">レスポンシブ</span>
+        </div>
       </section>
 
-      <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-        <%= link_to "← トップに戻る", root_path, class: "text-blue-600 dark:text-blue-400 font-medium hover:underline" %>
+      <div class="animate-fade-up pt-2" style="animation-delay: 0.24s">
+        <%= link_to root_path, class: "inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-white px-4 py-2.5 text-blue-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700 dark:border-blue-800/60 dark:bg-gray-800 dark:text-blue-300 dark:hover:border-blue-700" do %>
+          <span>←</span>
+          トップに戻る
+        <% end %>
       </div>
     </article>
   </div>
